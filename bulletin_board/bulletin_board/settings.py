@@ -164,10 +164,9 @@ DEFAULT_FROM_EMAIL = 'skillfactor@yandex.ru'  # здесь указываем у
 
 SERVER_EMAIL = 'skillfactor@yandex.ru'
 
-CELERY_BROKER_URL = 'redis://localhost:6379'  # казывает на URL брокера сообщений (Redis)
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'  # указывает на хранилище результатов выполнения задач.
-CELERY_ACCEPT_CONTENT = ['application/json']  # допустимый формат данных.
-CELERY_TASK_SERIALIZER = 'json'  # метод сериализации задач.
-CELERY_RESULT_SERIALIZER = 'json'  # метод сериализации результатов.
-CELERY_ENABLE_UTC = False
-
+# D7
+CELERY_BROKER_URL = 'redis://:qjUWGrrkcYhAJfqQrrPr8eltT0q2i1vn@redis-13191.c1.asia-northeast1-1.gce.cloud.redislabs.com:13191'
+CELERY_RESULT_BACKEND = 'redis://:qjUWGrrkcYhAJfqQrrPr8eltT0q2i1vn@redis-13191.c1.asia-northeast1-1.gce.cloud.redislabs.com:13191'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
