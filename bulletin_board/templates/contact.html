@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create daclaration
+{% endblock title %}
+
+
+
+{% block content %}
+ <h3>Подписка на рассылку:</h3>
+ <form method="POST">
+     {% csrf_token %}
+     {{ form }}
+     <input class="btn btn-primary float-right" type="submit" value="Подписатся">
+ </form>
+ {% endblock content %}

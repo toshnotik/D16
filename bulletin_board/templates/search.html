@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Search
+{% endblock title %}
+
+{% block title2 %}
+            <h1>Поиск по статям</h1>
+
+{% endblock title2 %}
+
+{% block content %}
+<form method="GET">
+    {{filter.form}}
+    <input class="btn btn-primary float-right" type="submit" value="найти">
+</form>
+{% for Dec in filter.qs %}
+<a href="{% url 'declaration' Dec.id %}">
+<table>
+
+    <tr>
+        <td>
+            {{ Dec.date_create|date:'d M Y' }}
+        </td>
+        <td>
+            {{ Dec.title|truncatechars:50 }}
+        </td>
+        <td>
+            {{ Dec.user }}
+        </td>
+        <td>
+            {{Dec.category}}
+        </td>
+
+    </tr>
+
+
+
+</table>
+    </a>
+
+{% endfor %}
+{% endblock content %}

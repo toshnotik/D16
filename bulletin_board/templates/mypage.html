@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Mypage
+{% endblock title %}
+{% block title2 %}
+<h1>Кабинет пользователя : {{user.first_name}}</h1>
+{% endblock title2 %}
+
+{% block content %}
+<div style="text-align: center;margin-top:15px;">
+    <table border="1" width="50%" cellpadding="5">
+        <tr>
+            <td>Ваш логин</td>
+            <td>{{user.username}}</td>
+        </tr>
+        <tr>
+            <td>Имя &nbsp;</td>
+            <td>{{user.first_name}}</td>
+        </tr>
+        <tr>
+            <td>Фамилия</td>
+            <td>{{user.last_name}}</td>
+        </tr>
+        <tr>
+            <td>Почта</td>
+            <td>{{user.email}}</td>
+        </tr>
+        <tr>
+            <td>ID</td>
+            <td>{{user.id}}</td>
+        </tr>
+        <tr>
+            <td>Отклики</td>
+            <td>
+                {% for rew in reviews %}
+                  {% for re in rew %}
+                <a href="{{re.id}}">
+                  <h2 class="post-title">
+                     {{re}}
+                  </h2>
+                </a>
+                  {% endfor %}
+                {% endfor %}
+
+            </td>
+        </tr>
+
+    </table>
+    <hr>
+    <button> <a href="/accounts/logout/">Выйти</a> </button>
+</div>
+{% endblock content %}

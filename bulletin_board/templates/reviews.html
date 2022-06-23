@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add reviews
+{% endblock title %}
+
+{% block title2 %}
+            <h1>Отклик</h1>
+{% endblock title2 %}
+
+{% block content %}
+<h1> Обявление:</h1>
+<h2 class="post-title">
+              {{reviewdetail.declaration}}
+            </h2>
+            <h3 class="post-subtitle">
+             Коментарий от {{reviewdetail.commentator}}
+
+            </h3>
+            <h4> Текст отклика: "{{reviewdetail.review}}"</h4>
+            <h5> Добавлено {{reviewdetail.review_date}}</h5>
+            <h6> <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="accept_response"  class="btn btn-primary float-right"> Принять</button>
+
+            </form>
+
+                <a class="btn btn-primary float-right" href="{% url 'delete_review' reviewdetail.id %}">Удалить</a>
+
+            </h6>
+
+
+{% endblock content %}

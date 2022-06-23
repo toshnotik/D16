@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Index
+{% endblock title %}
+
+{% block content %}
+<h1><a href="/">Simple SignUp/SignIn app</a></h1>
+<h2>Страница авторизованного пользователя {{request.user.username}}</h2>
+<div> Здесь может содержаться персональная информация для каждого пользователя </div>
+
+<button> <a href="sign/logout/">Выйти</a> </button>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add reviews
+{% endblock title %}
+
+{% block title2 %}
+            <h1>Отклик</h1>
+{% endblock title2 %}
+
+
+
+{% block content %}
+ <h3>Добавление отклика к стате {{declaration.title}}:</h3>
+ <form   method="POST">
+     {% csrf_token %}
+     {{ form }}
+     <input class="btn btn-primary float-right" type="submit" name="response" value="Добавить">
+ </form>
+
+{% endblock content %}

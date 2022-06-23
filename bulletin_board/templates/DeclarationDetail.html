@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Category
+{% endblock title %}
+
+{% block title2 %}
+            <h1>Одна известная MMORPG</h1>
+            <span class="subheading">фанатский сервис</span>
+{% endblock title2 %}
+
+{% block content %}
+<h1> Обявление:</h1>
+<h2 class="post-title">
+              {{DeclarationDetail.title}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{DeclarationDetail.text}}
+                <img class="img-fluid" src="media/{{DeclarationDetail.image}}" alt="">
+            </h3>
+            <h4> {{reviews.review}}</h4>
+
+            <h5>
+               {% if author %}
+                <a class="btn btn-primary float-right" href="{% url 'update' DeclarationDetail.id %}">Редактировать</a>
+                <a class="btn btn-primary float-right" href="{% url 'delete' DeclarationDetail.id %}">Удалить</a>
+                {% endif %}
+                </h5>
+            <h6>
+
+                {% if is_not_author %}
+                <form  action="{% url 'post_response' DeclarationDetail.id %} " method="POST">
+                {% csrf_token %}
+
+                <input class="btn btn-primary float-right" type="submit" name="response" value="Добавить">
+                </form>
+                <a class="btn btn-primary float-right" href="{% url 'addreviews' DeclarationDetail.id %}">Добавить отколик</a>
+                {% endif %}
+
+            </h6>
+
+
+{% endblock content %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Category
+{% endblock title %}
+
+{% block title2 %}
+            <h1>Одна известная MMORPG</h1>
+            <span class="subheading">фанатский сервис</span>
+{% endblock title2 %}
+
+
+{% block category %}
+
+ <div class=" row ">
+        <a class="btn btn-primary float-left" href="{% url 'category' category_tanks %}">Танки</a>
+        <a class="btn btn-primary float-left" href="{% url 'category' category_hills %}">Хилы</a>
+        <a class="btn btn-primary float-left" href="{% url 'category' category_dd %}">ДД</a>
+        <a class="btn btn-primary float-left" href="{% url 'category' category_Merchants %}">Торговцы</a>
+        <a class="btn btn-primary float-right" href="{% url 'category' category_Guildmasters %}">Гильдмастер</a>
+        <a class="btn btn-primary float-right" href="{% url 'category' category_Questgivers %}">Квестгиверы</a>
+        <a class="btn btn-primary float-right" href="{% url 'category' category_Blacksmiths %}">Кузнецы</a>
+        <a class="btn btn-primary float-right" href="{% url 'category' category_Tanners %}">Кожевники</a>
+        <a class="btn btn-primary float-right" href="{% url 'category' category_Zelievars %}">Зельевары</a>
+        <a class="btn btn-primary float-right" href="{% url 'category' category_SpellMasters %}">Мастера заклинаний</a>
+  </div>
+
+  {% endblock category %}
+{% block content %}
+{% if Declaration %}
+           {% for Dec in Declaration %}
+          <a href="{{Dec.id}}">
+            <h2 class="post-title">
+              {{Dec.title}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{Dec.text|truncatechars:50}}
+            </h3>
+              </a>
+
+          <h5>
+
+          <p class="post-meta">Posted by
+            <a href="/">MMORPG сервис</a>
+            on {{Dec.date_create|date:'d M Y'}}
+          </p>
+          </h5>
+
+
+         {% endfor %}
+
+   {% else %}
+       <h2> Постов нету</h2>
+   {% endif %}
+<div class="clearfix">
+{% if is_paginated %}
+    {% if page_obj.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{ page_obj.previous_page_number }}"><<<</a>
+    {% endif %}
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+            <a>{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">&rarr;</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last </a>
+    {% endif %}
+{% endif %}
+</div>
+{% endblock content %}

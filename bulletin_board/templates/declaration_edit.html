@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Update daclaration
+{% endblock title %}
+
+
+
+{% block content %}
+ <h3>редактирование стати:</h3>
+ <form method="POST" enctype="multipart/form-data">
+     {% csrf_token %}
+     {{ form }}
+     <input class="btn btn-primary float-right" type="submit" value="Сохранить">
+ </form>
+ {% endblock content %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Delete
+{% endblock title %}
+
+{% block title2 %}
+            <h1>Одна известная MMORPG</h1>
+            <span class="subheading">фанатский сервис</span>
+{% endblock title2 %}
+
+
+{% block content %}
+
+<h1>Вы действительно хотите удалить даную статю?</h1>
+<table>
+    <thead>
+           <tr>
+               <td>
+                   Заголовок
+               </td>
+               <td>
+                   Дата публикации
+               </td>
+               <td>
+                   Текс стати
+               </td>
+               <td>
+                   Категория
+               </td>
+
+           </tr>
+    </thead>
+
+           <tr>
+                 <td>
+                     {{declaration.title}}
+                 </td>
+                 <td>
+                     {{declaration.date_create|date:'d M Y'}}
+                 </td>
+                 <td>
+                     {{declaration.text|truncatechars:50}}
+                 </td>
+               <td>
+                   {{declaration.category}}
+               </td>
+
+             </tr>
+</table>
+<form method="POST">
+    {% csrf_token %}
+    <input class="btn btn-primary float-right" type="submit" value="подтвердить">
+</form>
+{% endblock content %}
