@@ -70,15 +70,6 @@ class DeclarationDetail(DetailView):
 
         return context
 
-    '''def get_object(self, *args, **kwargs):
-        obj = cache.get(f'post-{self.kwargs["pk"]}', None)
-
-        if not obj:
-            obj = super().get_object()
-            cache.set(f'post-{self.kwargs["pk"]}', obj)
-
-        return obj'''
-
 
 class DeclarationSearch(ListView):
     model = Declaration
@@ -98,8 +89,6 @@ class DeclarationCreate(LoginRequiredMixin, CreateView):
     login_url = '/accounts/login/'
     success_url = '/'
 
-    # permission_required = ('News.add_post', 'News.view_post')
-
 
 class DeclarationUpdateView(LoginRequiredMixin, UpdateView):
     model = Declaration
@@ -108,7 +97,6 @@ class DeclarationUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/accounts/login/'
     redirect_file_name = '/'
     success_url = '/'
-    # permission_required = ('News.change_post', 'News.view_post')
 
 
 class DeclarationDeleteView(LoginRequiredMixin, DeleteView):
@@ -117,7 +105,6 @@ class DeclarationDeleteView(LoginRequiredMixin, DeleteView):
     queryset = Declaration.objects.all()
     success_url = '/'
     login_url = '/accounts/login/'
-    # permission_required = ['News.delete_post', 'News.view_post']
 
 
 class AddReviews(LoginRequiredMixin, CreateView):
@@ -135,30 +122,11 @@ class AddReviews(LoginRequiredMixin, CreateView):
         self.object.save()
         return super().form_valid(form)
 
-    '''def post(self, request, *args, **kwargs):
-        post = get_object_or_404(Declaration, id=self.kwargs.get(self.pk_url_kwarg))
-        user_email = post.user.email
-
-        reviews = Reviews(review=request.POST['review'],
-                          commentator=self.request.user,
-                          )
-
-        send_mail(
-            subject=f'отклик от пользывателя : {reviews.commentator}',
-            message=f'текст отклика : {reviews.review}',
-            from_email=DEFAULT_FROM_EMAIL,
-            recipient_list=[user_email]
-        )
-
-        return redirect('/')'''
-
 
 class ReviewDetail(DetailView):
     model = Reviews
     template_name = 'reviews.html'
     context_object_name = 'reviewdetail'
-
-    # def post(self,request,*args,**kwargs):
 
 
 class ReviewDelete(DeleteView):
