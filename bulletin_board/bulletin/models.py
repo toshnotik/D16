@@ -67,8 +67,6 @@ class Declaration(models.Model):
     def __str__(self):
         return self.title
 
-    # def get_absolute_url(self):
-
     class Meta:
         verbose_name = "Обявление"
         verbose_name_plural = "Обявления"
